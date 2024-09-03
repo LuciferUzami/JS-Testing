@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Project</title>
+</head>
+<body>
+  <!-- YOUTUBE SECTIONS -->
+  <p>
+    YouTube Subscribe Button
+  </p>
+  <button class="js-tube-btn" onclick="subScribed()">
+    Subscribe
+  </button>
+  <!-- YOUTUBE SECTIONS -->
+
+  <!-- RPS SECTIONS -->
+   <p style="margin-top: 48px;">
+    Rock Paper Scissors Game
+   </p>
+   <a href="RPS.html">Click here</a>
+   <!-- RPS SECTIONS -->
+
+   <!-- Amazon Calculator -->
+    <p style="margin-top: 48px;">
+      Amazon Shipping Calculator
+    </p>
+    <p>
+      Orders under ₹40 = +₹10 shipping.
+    </p>
+    <p>
+      Orders over ₹40 = FREE shipping.
+    </p>
+    <input class="js-amazon-cal" type="int" placeholder="Cost of order" onkeydown="
+    if (event.key === 'Enter'){
+      calCulator()
+    }
+    ">
+    <button onclick="calCulator()">
+      Calculate
+    </button>
+    <p class="js-amazon-result">
+      
+    </p>
+    <!-- Amazon Calculator -->
+
+    <!-- Final CSS Version -->
+     <p style="margin-top: 100px;">
+      <a href="Dom-CSS.html">CSS version of these projects</a>
+     </p>
+    
+
+    <!-- Final CSS Version -->
+
+    <!-- JS Code HERE -->
+     <script>
+      // function for Subscribe button
+      function subScribed() {
+        const subOrunsub = document.querySelector(".js-tube-btn").innerText
+        // Codition for Subscribe and Subscribed
+        if (subOrunsub === "Subscribe"){
+          document.querySelector(".js-tube-btn").innerText = "Subscribed"
+        }else {
+          document.querySelector(".js-tube-btn").innerText = "Subscribe"
+        }
+      }
+
+      // function for amazon calculation
+      function calCulator() {
+        const amount = document.querySelector(".js-amazon-cal").value
+        // Condition
+        if (amount === "") {
+          alert("Input has been empty fill that first")
+        }
+        else if (Number(amount)>=40) {
+          document.querySelector(".js-amazon-result").innerText = `₹${amount}`
+        }
+        else if (Number(amount)<=39){ 
+          document.querySelector(".js-amazon-result").innerText = `₹${Number(amount) + 10}`
+          console.log(amount)
+        }
+      }
+     </script>
+
+</body>
+</html>

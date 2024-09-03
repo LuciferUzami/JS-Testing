@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variable for Cart</title>
+</head>
+<body>
+  <p>Cart Quantity<p>
+  <!-- Buttons -->
+   <button onclick="console.log('Cart quantity: '+ cart)">
+    Show Quantity
+   </button>
+   <button onclick="cart ++; console.log('Cart quantity: ' + cart)">
+    Add to Cart
+   </button>
+   <button onclick="cart += 2; console.log('Cart quantity: ' + cart)">
+    +2
+   </button>
+   <button onclick="cart += 3; console.log('Cart quantity: ' + cart)">
+    +3
+    </button>
+   <button onclick="cart = 0; console.log('Cart was Reseted'); console.log('Cart quantity: '+ cart)">
+    Reset Cart
+   </button>
+
+   <!-- JavaScript code -->
+    <script>
+      let cart = 0
+      // let condition = 'd' ? "Condition true" : "Condition false"
+      // console.log(condition)
+
+      // const currency = "USD" || "IND"
+      // console.log(currency)
+
+      // Creat function.
+      function calculate(value1 = 0, value2 = 0) {
+        return value1 + value2
+      }
+
+      console.log(calculate())
+    </script>
+</body>
+</html>

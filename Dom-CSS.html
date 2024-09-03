@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM With CSS</title>
+  <!-- CSS CODE -->
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    .cs-tube-btn {
+      border: none;
+      background-color: black;
+      color: white;
+      padding: 10px 15px;
+      font-weight: bold;
+      border-radius: 50rem;
+      cursor: pointer;
+    }
+
+    .is-subscribed {
+      background-color: rgb(240, 240, 240);
+      color: black;
+    }
+
+    .cs-amazon-cal {
+      font-size: 15px;
+      padding: 10px;
+      border: 1px solid black;
+    }
+
+    .cs-amazon-btn {
+      padding: 12px 15px;
+      background-color: green;
+      color: white;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- YOUTUBE SECTIONS -->
+  <p>
+    YouTube Subscribe Button
+  </p>
+  <button class="js-tube-btn cs-tube-btn" onclick="subScribed()">
+    Subscribe
+  </button>
+  <!-- YOUTUBE SECTIONS -->
+
+  <!-- RPS SECTIONS -->
+   <p style="margin-top: 48px;">
+    Rock Paper Scissors Game
+   </p>
+   <a href="RPS.html">Click here</a>
+   <!-- RPS SECTIONS -->
+
+   <!-- Amazon Calculator -->
+    <p style="margin-top: 48px;">
+      Amazon Shipping Calculator
+    </p>
+    <p>
+      Orders under ₹40 = +₹10 shipping.
+    </p>
+    <p>
+      Orders over ₹40 = FREE shipping.
+    </p>
+
+    <!-- Get user order amount -->
+    <input class="js-amazon-cal cs-amazon-cal" type="int" placeholder="Cost of order" onkeydown="
+    if (event.key === 'Enter'){
+      calCulator()
+    }
+    ">
+    <button class="cs-amazon-btn" onclick="calCulator()">
+      Calculate
+    </button>
+    <p class="js-amazon-result">
+      
+    </p>
+    <!-- Amazon Calculator -->
+
+
+    <!-- JS Code HERE -->
+     <script>
+      // function for Subscribe button
+      function subScribed() {
+        const isSubscribed = document.querySelector(".js-tube-btn")
+        const subOrunsub = isSubscribed.innerText
+        // Codition for Subscribe and Subscribed
+        if (subOrunsub === "Subscribe"){
+          isSubscribed.innerText = "Subscribed"
+          // Add the new class if it Subscribed
+          isSubscribed.classList.add("is-subscribed")
+        }else {
+          isSubscribed.innerText = "Subscribe"
+          // Remove the class
+          isSubscribed.classList.remove("is-subscribed")
+        }
+      }
+
+      // function for amazon calculation
+      function calCulator() {
+        const amount = document.querySelector(".js-amazon-cal").value
+        // Condition
+        if (amount === "") {
+          alert("Input has been empty fill that first")
+        }
+        else if (Number(amount)>=40) {
+          document.querySelector(".js-amazon-result").innerText = `₹${amount}`
+        }
+        else if (Number(amount)<=39){ 
+          document.querySelector(".js-amazon-result").innerText = `₹${Number(amount) + 10}`
+          console.log(amount)
+        }
+      }
+     </script>
+
+</body>
+</html>
