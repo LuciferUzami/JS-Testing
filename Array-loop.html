@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Array and Loop</title>
+  <style>
+    /* CSS START */
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .css-practice2 {
+      margin-top: 50px;
+    }
+
+    /* CSS STOP */
+  </style>
+</head>
+<body>
+  <!-- HTML START -->
+
+  <!-- Practice 1 -->
+  <p>Todo List Practice 1</p>
+  <input class="js-input" type="text" onkeydown="if (event.key === 'Enter'){
+    storeTodo()
+  }" placeholder="Todo name">
+  <button onclick="storeTodo()">
+    Add
+  </button>
+  <!-- Practice 1 -->
+
+  `<!-- Practice 2 -->
+  <p class="css-practice2">
+    Todo List Practice 2
+  </p>
+  <input class="js-todoinput" type="text" onkeydown="if (event.key === 'Enter'){
+    showTodo()
+  }" placeholder="Todo name">
+  <button onclick="showTodo()">
+    Add
+  </button>
+  <div class="js-todolist">
+  </div>
+  <!-- Practice 3 -->
+
+  <!-- HTML STOP -->
+  <script>
+
+    // JS START
+    const todoList = []
+
+    // function for practice 1
+    function storeTodo() {
+      todoData = document.querySelector(".js-input").value
+      // Add the new todo data in todoList array
+      todoList.push(todoData)
+      console.log(todoList)
+    }
+
+    // function for practice 2
+
+    function showTodo() {
+      todoData = document.querySelector(".js-todoinput").value
+      todoList.push(todoData)
+      // Using map function
+      document.querySelector(".js-todolist").innerHTML = todoList.map(function(currentValue) {
+        // Return the todolist data one by one in div tag
+        return `<p>${currentValue}</p>`
+      }).join('')
+    }
+
+    // JS STOP
+  </script>
+</body>
+</html>
