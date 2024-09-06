@@ -229,40 +229,31 @@
       }
 
       // Create variable for store function for auto play
+      let isAutoPlaying = false
       let autoPlayInterval = null
       // Auto Play function
       function autoPlay() {
-        autoPlayInterval = setInterval(function() {
-          const playerAction = computerPick()
-          const computerAction = computerPick() 
-          // Result
-          winingResult(playerAction, computerAction)
-        }, 1000)
-      }
-
-      // function for stop auto paly
-      function stopAutoplay() {
-        if (autoPlayInterval) {
-          clearInterval(autoPlayInterval)
-          autoPlayInterval = null
-        }
-      }
-      // Stop function
-      function btnTextchange() {
-         // Get btn has was value will be present
-         const btnText = document.querySelector(".js-autostop-btn")
-        console.log(`Button Text: ${btnText}`)
-        console.log(`setInterval variable value: ${autoPlayInterval}`)
-        // Condition for text changes in button
-        if(autoPlayInterval) {
-          stopAutoplay()
-          btnText.innerText = "Auto Play"
+        // Change the condition if true it will false if false it will be true
+        if (!isAutoPlaying) {
+            autoPlayInterval = setInterval(function() {
+            const playerAction = computerPick()
+            const computerAction = computerPick() 
+            // Result
+            winingResult(playerAction, computerAction)
+          }, 1000)
+          // Change button text Auto to Stop
+          document.querySelector(".js-autostop-btn").innerText = "Stop"
+          // Stop the condition !true = false
+          isAutoPlaying = true
         } else {
-          autoPlay()
-          btnText.innerText = "Stop"
+          // Change button text Stop to Auto
+          document.querySelector(".js-autostop-btn").innerText = "Auto Play"
+          clearInterval(autoPlayInterval)
+          // Run the command again !false = true
+          isAutoPlaying = false
         }
+       
       }
-      document.querySelector(".js-autostop-btn").addEventListener("click", btnTextchange)
     </script>
 </body>
 </html>
