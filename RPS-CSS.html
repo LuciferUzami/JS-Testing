@@ -113,7 +113,7 @@
     <!-- Restart Score Button -->
 
     <!-- Auto Play Button -->
-     <button class="css-autoplay-btn" onclick="autoPlay()">
+     <button class="css-autoplay-btn js-autostop-btn" onclick="autoPlay(); btnTextchange()">
       Auto Play
      </button>
     <!-- JS Script -->
@@ -228,19 +228,41 @@
         updateScore()
       }
 
+      // Create variable for store function for auto play
+      let autoPlayInterval = null
       // Auto Play function
       function autoPlay() {
-        setInterval(function(){
+        autoPlayInterval = setInterval(function() {
           const playerAction = computerPick()
           const computerAction = computerPick() 
           // Result
           winingResult(playerAction, computerAction)
-        }, 1500)
+        }, 1000)
+      }
+
+      // function for stop auto paly
+      function stopAutoplay() {
+        if (autoPlayInterval) {
+          clearInterval(autoPlayInterval)
+          autoPlayInterval = null
+        }
       }
       // Stop function
-      function stopPlay() {
-
+      function btnTextchange() {
+         // Get btn has was value will be present
+         const btnText = document.querySelector(".js-autostop-btn")
+        console.log(`Button Text: ${btnText}`)
+        console.log(`setInterval variable value: ${autoPlayInterval}`)
+        // Condition for text changes in button
+        if(autoPlayInterval) {
+          stopAutoplay()
+          btnText.innerText = "Auto Play"
+        } else {
+          autoPlay()
+          btnText.innerText = "Stop"
+        }
       }
+      document.querySelector(".js-autostop-btn").addEventListener("click", btnTextchange)
     </script>
 </body>
 </html>
