@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Array and Loop</title>
+  <style>
+    /* CSS START */
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .css-practice-2-3 {
+      margin-top: 50px;
+    }
+    .css-gettodo-date {
+      padding: 6px;
+      font-size: 15px
+    }
+    .css-add-btn {
+      border: none;
+      padding: 10px 15px;
+      width: 100px;
+      font-size: 15px;
+      background-color: green;
+      color: white;
+      cursor: pointer;
+    }
+    /* Show ToDo */
+    .css-todolist-date,
+    .css-todo-input-grid {
+      display: grid;
+      grid-template-columns: 200px 150px 100px;
+      column-gap: 10px;
+      row-gap: 10px;
+      align-items: center;
+    }
+    .css-todo-input-grid {
+      margin-bottom: 10px;
+    }
+    .css-delete-btn {
+      border: none;
+      padding: 10px 15px;
+      width: 100px;
+      font-size: 15px;
+      background-color: brown;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* CSS STOP */
+  </style>
+</head>
+<body>
+  <!-- HTML START -->
+
+  <!-- Practice 1 -->
+  <p>Todo List Practice 1</p>
+  <input class="js-input" type="text" onkeydown="if (event.key === 'Enter'){
+    storeTodo()
+  }" placeholder="Todo name">
+  <button onclick="storeTodo()">
+    Add
+  </button>
+  <!-- Practice 1 -->
+
+  `<!-- Practice 2 -->
+  <p class="css-practice-2-3">
+    Todo List Practice 2
+  </p>
+  <input class="js-todoinput" type="text" onkeydown="if (event.key === 'Enter'){
+    showTodo()
+  }" placeholder="Todo name">
+  <button onclick="showTodo()">
+    Add
+  </button>
+  <div class="js-todolist">
+  </div>
+  <!-- Practice 2 -->
+
+  <!-- practice 3 -->
+   <p class="css-practice-2-3">
+    Todo List
+   </p> 
+   <div class="css-todo-input-grid">
+    <input type="text" class="css-gettodo-date js-todolist-para" placeholder="Todo name">
+    <input type="date" class="css-gettodo-date js-tododate">
+    <button class="css-add-btn" onclick="addTodo()">Add</button>
+    <div class="js-todolist-date css-todolist-date">
+    </div>
+   </div>
+
+  <!-- HTML STOP -->
+  <script>
+
+    // JS START
+    const todoList = []
+
+    // function for practice 1
+    function storeTodo() {
+      todoData = document.querySelector(".js-input").value
+      // Add the new todo data in todoList array
+      todoList.push(todoData)
+      console.log(todoList)
+    }
+
+    // function for practice 2
+
+    function showTodo() {
+      const todoData = document.querySelector(".js-todoinput").value
+      todoList.push(todoData)
+      // Using map function
+      document.querySelector(".js-todolist").innerHTML = todoList.map(function(currentValue) {
+        // Return the todolist data one by one in div tag
+        return `<p>${currentValue}</p>`
+      }).join('')
+    }
+
+    // function for practice 3
+    function showWithDate() {
+      let todolistHTML = ""
+      // 
+      for (i = 0; i < todoList.length; i++) {
+        // Assessing array into object
+        const { todo, date } = todoList[i]
+        // 
+        const divTags = `
+          <div>${todo}</div>
+          <div>${date}</div>
+          <button class="css-delete-btn" onclick = "deleteTodo(${i})">Delete</button>
+        `
+        // 
+        todolistHTML += divTags
+       
+      }
+
+      document.querySelector(".js-todolist-date").innerHTML = todolistHTML
+    }
+
+    // For add button
+    function addTodo() {
+      const todolist = document.querySelector(".js-todolist-para").value;
+      const tododate = document.querySelector(".js-tododate").value;
+
+      // Push the data in the array
+      todoList.push({
+        todo: todolist,
+        date: tododate
+      });
+
+      // Clear the input fields
+      document.querySelector(".js-todolist-para").value = "";
+      document.querySelector(".js-tododate").value = "";
+
+      // Render the updated todo list
+      showWithDate();
+    }
+
+    // For delete button
+    function deleteTodo(index) {
+      // Remove the item from the array
+      todoList.splice(index, 1);
+
+      // Re-render the updated list after deletion
+      showWithDate();
+    }
+
+    // JS STOP
+  </script>
+</body>
+</html>
