@@ -43,7 +43,8 @@
       font-size: 25px;
     }
     /* For Reset score button */
-    .css-reset-btn {
+    .css-reset-btn,
+    .css-autoplay-btn {
       font-size: 15px;
       padding: 8px 15px;
       border: none;
@@ -111,6 +112,10 @@
     </button>
     <!-- Restart Score Button -->
 
+    <!-- Auto Play Button -->
+     <button class="css-autoplay-btn" onclick="autoPlay()">
+      Auto Play
+     </button>
     <!-- JS Script -->
     <script>
       // import GoTrue from 'gotrue-js';
@@ -221,6 +226,20 @@
 
         // Update the para
         updateScore()
+      }
+
+      // Auto Play function
+      function autoPlay() {
+        setInterval(function(){
+          const playerAction = computerPick()
+          const computerAction = computerPick() 
+          // Result
+          winingResult(playerAction, computerAction)
+        }, 1500)
+      }
+      // Stop function
+      function stopPlay() {
+
       }
     </script>
 </body>
