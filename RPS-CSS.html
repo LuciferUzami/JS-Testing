@@ -60,9 +60,7 @@
   </p>
   <!-- Play Buttons -->
    <!-- ROCK BUTTON -->
-   <button class="css-action-btn" onclick="
-    const computerChoices = computerPick()
-    winingResult(playerMove = 'rock', computerChoices)">
+   <button class="css-action-btn js-rock-btn">
     <span>
       <img class="css-rps-logo" src="img's/logo's/rock-emoji.png" alt="">
     </span>
@@ -70,9 +68,7 @@
    <!-- ROCK BUTTON -->
 
    <!-- PAPER BUTTON -->
-   <button class="css-action-btn" onclick="
-    const computerChoice = computerPick()
-    winingResult(playerMove = 'paper', computerChoice)">
+   <button class="css-action-btn js-paper-btn">
     <span>
       <img class="css-rps-logo" src="img's/logo's/paper-emoji.png" alt="">
     </span>
@@ -80,9 +76,7 @@
    <!-- PAPER BUTTON -->
 
    <!-- SCISSORS BUTTON -->
-   <button class="css-action-btn" onclick="
-    const computerChoiceses = computerPick()
-    winingResult(playerMove = 'scissors', computerChoiceses)">
+   <button class="css-action-btn js-scissor-btn">
     <span>
       <img class="css-rps-logo" src="img's/logo's/scissors-emoji.png" alt="">
     </span>
@@ -107,13 +101,13 @@
    <!-- Score Bord -->
 
    <!-- Restart Score Button -->
-    <button class="css-reset-btn" onclick="reSet()">
+    <button class="css-reset-btn js-reset-btn">
       Reset Score
     </button>
     <!-- Restart Score Button -->
 
     <!-- Auto Play Button -->
-     <button class="css-autoplay-btn js-autostop-btn" onclick="autoPlay(); btnTextchange()">
+     <button class="css-autoplay-btn js-autostop-btn">
       Auto Play
      </button>
     <!-- JS Script -->
@@ -228,14 +222,19 @@
         updateScore()
       }
 
+      document.querySelector(".js-reset-btn").addEventListener('click', ()=> {
+        reSet()
+      })
+
       // Create variable for store function for auto play
       let isAutoPlaying = false
       let autoPlayInterval = null
       // Auto Play function
       function autoPlay() {
+        
         // Change the condition if true it will false if false it will be true
         if (!isAutoPlaying) {
-            autoPlayInterval = setInterval(function() {
+            autoPlayInterval = setInterval(() => {
             const playerAction = computerPick()
             const computerAction = computerPick() 
             // Result
@@ -245,6 +244,7 @@
           document.querySelector(".js-autostop-btn").innerText = "Stop"
           // Stop the condition !true = false
           isAutoPlaying = true
+
         } else {
           // Change button text Stop to Auto
           document.querySelector(".js-autostop-btn").innerText = "Auto Play"
@@ -252,8 +252,84 @@
           // Run the command again !false = true
           isAutoPlaying = false
         }
-       
+
       }
+      // 
+      document.querySelector(".js-autostop-btn").addEventListener('click', ()=> {
+        autoPlay()
+      })
+   
+      // Rock btn 
+      document.querySelector(".js-rock-btn").addEventListener('click', ()=> {
+        if (!isAutoPlaying) {
+           // Condition for if Auto mode on other option or disable
+          const computerChoices = computerPick()
+          winingResult(playerMove = 'rock', computerChoices)
+        } else {
+          alert ("You are currently in Auto Play mode Exit it firt")
+        }
+      })
+      // Paper btn
+      document.querySelector(".js-paper-btn").addEventListener('click', ()=> {
+        if (!isAutoPlaying) {
+           // Condition for if Auto mode on other option or disable
+          const computerChoices = computerPick()
+          winingResult(playerMove = 'paper', computerChoices)
+        } else {
+          alert ("You are currently in Auto Play mode Exit it firt")
+        }
+      })
+      // Scissor btn
+      document.querySelector(".js-scissor-btn").addEventListener('click', ()=> {
+        if (!isAutoPlaying) {
+           // Condition for if Auto mode on other option or disable
+          const computerChoices = computerPick()
+          winingResult(playerMove = 'scissors', computerChoices)
+        } else {
+          alert ("You are currently in Auto Play mode Exit it firt")
+        }
+      })
+
+      // For Keybord button control
+      const keyCountrol = document.body
+      // Rock
+      keyCountrol.addEventListener('keydown', (event)=> {
+        if (event.key === 'r') {
+           // Condition for if Auto mode on other option or disable
+            if (!isAutoPlaying) {
+            const computerChoices = computerPick()
+            winingResult(playerMove = 'rock', computerChoices)
+          } else {
+            alert ("You are currently in Auto Play mode Exit it firt")
+          }
+        }
+      })
+
+      // Paper
+      keyCountrol.addEventListener('keydown', (event) => {
+        if (event.key === 'p') {
+           // Condition for if Auto mode on other option or disable
+            if (!isAutoPlaying) {
+            const computerChoices = computerPick()
+            winingResult(playerMove = 'paper', computerChoices)
+          } else {
+            alert ("You are currently in Auto Play mode Exit it firt")
+          }
+        }
+      })
+
+      // Scissor
+      keyCountrol.addEventListener('keydown', (event)=> {
+        if (event.key === 's') {
+          // Condition for if Auto mode on other option or disable
+            if (!isAutoPlaying) {
+            const computerChoices = computerPick()
+            winingResult(playerMove = 'scissors', computerChoices)
+          } else {
+            alert ("You are currently in Auto Play mode Exit it firt")
+          }
+        }
+      })
     </script>
 </body>
 </html>
